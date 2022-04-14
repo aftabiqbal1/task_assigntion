@@ -6,4 +6,7 @@ class User < ApplicationRecord
     has_many :assigneds
     has_many :tasks, through: :assigneds
     has_many :comments
+
+    #password securing
+    has_secure_password
 end
