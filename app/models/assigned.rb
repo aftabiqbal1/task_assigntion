@@ -1,6 +1,6 @@
 class Assigned < ApplicationRecord
     #Enums
-    enum complete_status: { pending: 0, in_progress: 1, submitted: 2}
+    enum :status, { todo: "todo", inprogress: "inprogress", submitted: "submitted"}, default: "todo"
 
     #Relationships
     belongs_to :user

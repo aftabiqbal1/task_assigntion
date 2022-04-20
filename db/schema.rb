@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_14_100031) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_19_145321) do
   create_table "assigneds", force: :cascade do |t|
-    t.integer "complete_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "task_id"
     t.integer "user_id"
+    t.string "status", default: "todo"
     t.index ["task_id"], name: "index_assigneds_on_task_id"
     t.index ["user_id"], name: "index_assigneds_on_user_id"
   end
@@ -37,9 +37,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_14_100031) do
   create_table "tasks", force: :cascade do |t|
     t.string "files"
     t.string "description"
-    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "incomplete"
   end
 
   create_table "users", force: :cascade do |t|

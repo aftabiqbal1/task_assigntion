@@ -1,0 +1,17 @@
+<h1> Add Task </h1>
+<%= form_with(model: @task, url: add_task_path) do |f| %>
+  <div class="form-group">
+    <%= f.label :files%>
+    <%= f.text_field :files, class: "form-control"%>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :Description%>
+    <%= f.text_field :description, class: "form-control"%>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "Add Task"%>
+  </div>
+<%end%>
+
