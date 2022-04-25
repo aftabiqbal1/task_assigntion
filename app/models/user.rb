@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
     #Relationships
     has_many :assigneds
-    has_many :tasks, through: :assigneds
+    has_many :assigned_tasks, through: :assigneds
     has_many :comments
+    has_many :tasks
 end

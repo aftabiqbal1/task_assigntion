@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.new(task_params)
     if @task.save
       redirect_to root_path, notice: "Sucessfully created"
     else
@@ -13,7 +13,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    @tasks = Task.all
+    @tasks = current_user.tasks
   end
 
   def showStaffTasks
@@ -23,6 +23,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:files, :description)
+    params.require(:task).permit(:files, :description, :folder)
   end
 end

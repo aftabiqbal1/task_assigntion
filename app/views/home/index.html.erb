@@ -1,0 +1,42 @@
+<%# @assigneds = Assigned.all %>
+<%# @join = Task.joins(:assigneds)%>
+<%# @assignedTo = Task.joins(:assigneds).select("assigneds.user_id")%>
+
+<%# ---------------- Card builder on home page --------------%>
+
+<div class="row" >
+  <% @tasks.each do |t| %>
+  
+      <div class="col-md-4" >
+        <div class="card h-100" >
+          <%#= image_tag task.picture, class: 'card-img-top', width: 300 %>
+          <div class="card bg-success text-white">
+            <div class="card-body">
+              <h5 class="card-title">Task: <%= t.description %></h5>
+              <p class="card-text">
+                File: 
+                <% if @tasks.folder.attached? %>
+                  <%= image_tag @tasks.folder, style: "width: 200px; display: block"%>
+                <%end%>
+                <br>
+                Created By: <%= t.user_id%><br>
+                Assigned To: 
+                <% @id = Assigned.where("task_id = ?", t.id).select("Assigned.user_id") %>
+                <% if @id.nil? %>
+                  <%=  "NULL"%>
+                <%else%>
+
+                  <% t.assigneds.each do |assign| %>
+                    <%= assign.user_id %>
+                  <% end %>
+                <%end%>
+                <br>
+                Status: <%= t.status %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%end%>
+  
+</div>

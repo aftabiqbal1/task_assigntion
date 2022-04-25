@@ -1,10 +1,33 @@
 <h1>All Created Tasks </h1>
 
+<% if user_signed_in? %>  
+      <% if current_user.role == "admin"%>
+        <%= link_to 'Add Task', add_task_path, class: :"btn btn-primary" %>
+      <%end%>
+    <% else %>
+      <%= link_to 'Sign in', new_user_session_path%>
+      <%= link_to 'Sign up', new_user_registration_path%>
+    <% end %>
+    <br><br>
+    
+    <% if user_signed_in? && current_user.role == 'admin'%> 
+    <%= button_to 'Assign Task', assign_task_path, method: :get, class: :"btn btn-primary"%>
+    <%end%>
+    <br>
 
-<% @tasks.each do |t| %>
-<div> 
-  <%= t.files%>
-  <%= t.description%>
-  <%= t.status%>
+<div class="row" >
+  <% @tasks.each do |task| %>
+      <div class="col-md-4" >
+        <div class="card h-100" >
+          <%#= image_tag task.picture, class: 'card-img-top', width: 300 %>
+          <div class="card bg-success text-white">
+            <div class="card-body">
+              <h5 class="card-title">Task: <%= task.description %></h5>
+              <p class="card-text">Created By: <%= task.user_id%></p>
+              <p class="card-text">File: <%= task.files %><br> Status: <%= task.status %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+  <% end %>
 </div>
-<% end %>

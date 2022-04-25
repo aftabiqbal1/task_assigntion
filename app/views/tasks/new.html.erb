@@ -2,7 +2,7 @@
 <%= form_with(model: @task, url: add_task_path) do |f| %>
   <div class="form-group">
     <%= f.label :files%>
-    <%= f.text_field :files, class: "form-control"%>
+    <%= f.file_field :folder, class: "form-control"%>
   </div>
 
   <div class="form-group">
