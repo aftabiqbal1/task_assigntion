@@ -14,9 +14,8 @@
             <div class="card-body">
               <h5 class="card-title">Task: <%= t.description %></h5>
               <p class="card-text">
-                File: 
-                <% if @tasks.folder.attached? %>
-                  <%= image_tag @tasks.folder, style: "width: 200px; display: block"%>
+                <% if t.folder.attached? %>
+                  <%= image_tag t.folder, style: "width: 320px; display: block"%>
                 <%end%>
                 <br>
                 Created By: <%= t.user_id%><br>

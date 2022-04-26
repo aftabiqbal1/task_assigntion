@@ -8,6 +8,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to root_path, notice: "Sucessfully created"
     else
+      flash[:errors] = @task.errors.full_messages
       render :new
     end
   end

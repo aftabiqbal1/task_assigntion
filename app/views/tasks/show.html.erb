@@ -22,9 +22,19 @@
           <%#= image_tag task.picture, class: 'card-img-top', width: 300 %>
           <div class="card bg-success text-white">
             <div class="card-body">
-              <h5 class="card-title">Task: <%= task.description %></h5>
-              <p class="card-text">Created By: <%= task.user_id%></p>
-              <p class="card-text">File: <%= task.files %><br> Status: <%= task.status %></p>
+              <h5 class="card-title">
+                Task: <%= task.description %>
+              </h5>
+              <p class="card-text">
+                <% if task.folder.attached?%>
+                  <%= image_tag task.folder, style: "width:320px; display:block"%>
+                <%end%>
+              </p>
+              <p class="card-text">
+                Created By: <%= task.user_id%><br>
+                Assigned To: <%= task.files %><br>
+                Status: <%= task.status %>
+              </p>
             </div>
           </div>
         </div>
