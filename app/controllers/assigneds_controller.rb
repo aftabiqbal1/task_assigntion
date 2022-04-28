@@ -9,6 +9,7 @@ class AssignedsController < ApplicationController
     @assign = Assigned.new(assign_params)
     respond_to do |format|
       if @assign.save
+        Task.update(assign_params.task_id, status: 'todo')
         format.js
         format.html {render :index}
         #redirect_to root_path, notice: "Task Successfully Assigned"
@@ -21,6 +22,6 @@ class AssignedsController < ApplicationController
   private
 
   def assign_params
-    params.require(:assigned).permit(:user_id, :task_id)
+    params.require(:assigned).permit(:user_id, :task_id, )
   end
 end
