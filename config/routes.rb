@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   get "assign_task", to: "assigneds#new"
   post "assign_task", to: "assigneds#create"
 
+  get "add_staff_user", to: "staffs#new"
+  post "add_staff_user", to: "staffs#create"
+
+  #map.devise_for :users, controllers: {passwords: "users/passwords"}, path_names:{new: :new}
+
   # Defines the root path route ("/")
   root "home#index"
 end

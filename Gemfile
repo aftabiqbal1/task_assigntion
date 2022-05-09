@@ -76,3 +76,5 @@ end
 gem 'jsbundling-rails'
 gem 'cssbundling-rails'
 gem 'goldiloader'
+gem "figaro"
+gem 'securerandom'
