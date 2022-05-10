@@ -15,4 +15,6 @@ class User < ApplicationRecord
     belongs_to :user
     
     belongs_to :admin_user, class_name: 'User', foreign_key: 'user_id'
+
+    
 end

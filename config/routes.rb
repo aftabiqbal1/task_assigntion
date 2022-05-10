@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get "add_staff_user", to: "staffs#new"
   post "add_staff_user", to: "staffs#create"
 
-  #map.devise_for :users, controllers: {passwords: "users/passwords"}, path_names:{new: :new}
+  devise_for :users, controllers: {passwords: "users/passwords"}, only: [:edit, :update, :create]
 
   # Defines the root path route ("/")
   root "home#index"
