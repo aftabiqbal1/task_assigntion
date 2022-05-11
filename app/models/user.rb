@@ -17,4 +17,18 @@ class User < ApplicationRecord
     belongs_to :admin_user, class_name: 'User', foreign_key: 'user_id'
 
     
+    #reset_password_token for staff
+    before_save :reset_token, if: :role
+    def role?
+      return (self.role).eql?("staff")
+    end
+    def reset_token
+      self.reset_password_token = SecureRandom.hex(10)
+      self.reset_password_sent_at = Time.now.utc
+    end
+    before_validation :chk
+
+    def chk
+      puts "helloh"
+    end
 end
