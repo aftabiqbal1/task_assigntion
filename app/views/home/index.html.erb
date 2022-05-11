@@ -1,1 +1,55 @@
-<h1>Hello</h1>
+<%# @assigneds=Assigned.all %>
+  <%# @join=Task.joins(:assigneds)%>
+    <%# @assignedTo=Task.joins(:assigneds).select("assigneds.user_id")%>
+
+      <style>
+        .flex-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          /* height: 300px; */
+          flex-wrap: wrap;
+        }
+      </style>
+      <%# ---------------- Card builder on home page --------------%>
+        <div class="row">
+          <% @tasks.each do |t| %>
+            <div class="col-md-4">
+              <div class="card h-100">
+                <div class="card bg-success text-white">
+                  <div class="card-body">
+                    <h5 class="card-title">Task: <%= t.description %>
+                    </h5>
+                    <div class="flex-container">
+                      <p class="card-text">
+                        <% if t.folder.attached? %>
+                          <%= image_tag t.folder, style: "width: 100%" %>
+                            <%end%>
+                    </div>
+                    <br>
+                    Created By: <%= t.user.first_name%><br>
+                      Assigned To:
+                      <%@aa=t.assigned_users%>
+                        <%@aa.each do |e| %>
+                          <% if e.first_name.nil? %>
+                            <%= 'n/a' %>
+                              <%else%>
+                                <%= e.first_name %>
+                                  <%end%>
+                                    <%end%>
+                                      <%= form_with(model: @assigned, local: false) do |f| %>
+                                        <div class="form-group">
+                                          <%= select("user", "user_id" , @users.map { |x| [ x.first_name, x.id ]},
+                                            {prompt: 'Assign Instead' })%>
+                                            <%= f.submit "Save" , class: "btn btn-primary btn-sm" %>
+                                        </div>
+                                        <%end%>
+                                          Status: <%= t.status %>
+                                            </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <%end%>
+
+        </div>
