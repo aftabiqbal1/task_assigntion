@@ -7,9 +7,9 @@ class StaffsController < ApplicationController
 
   def create
     @user = current_user.users.new(user_params)
-    debugger
     if @user.save
-      PasswordResetMailer.reset_password_instructions(@user, @user.reset_password_token,{})
+      #PasswordResetMailer.reset_password_instructions(@user, @user.reset_password_token,{}).deliver_later
+      PasswordResetMailer.with(user: @user, token: @user.reset_password_token).welcome_staff.deliver_now
     else
       flash[:errors] = @user.errors.full_messages
       render :new

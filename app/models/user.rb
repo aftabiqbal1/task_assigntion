@@ -18,17 +18,13 @@ class User < ApplicationRecord
 
     
     #reset_password_token for staff
-    before_save :reset_token, if: :role
-    def role?
+    before_save :reset_token, if: :role_staff
+
+    def role_staff
       return (self.role).eql?("staff")
     end
     def reset_token
       self.reset_password_token = SecureRandom.hex(10)
       self.reset_password_sent_at = Time.now.utc
-    end
-    before_validation :chk
-
-    def chk
-      puts "helloh"
     end
 end
